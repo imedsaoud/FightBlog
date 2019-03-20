@@ -1,6 +1,5 @@
 * {
   font-weight: bold;
-  
 }
 
 h2 {
@@ -11,8 +10,6 @@ h2 {
 body {
   background-color: bisque;
 }
-
-
 
 .header {
   display: flex;
@@ -27,42 +24,43 @@ body {
 .header h1 {
   font-size: 40px;
   color: white;
-  
 }
 
 .about {
-  width: 80vw;
-  height: 20vh;
+  width: 78vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: auto auto;
   margin-bottom: 5%;
   line-height: 20px;
   background-color: #6596f3;
   border-radius: 15px;
-
 }
 
-.about__title{
-  margin-bottom: 20px;
-  padding: 13px;
+.about__title {
+  margin-bottom: 15px;
+
   color: white;
 }
-.about p{
+.about p {
   width: 70vw;
   margin: auto auto;
-  
+  line-height: 30px; 
 }
 
 .categorie {
-  width: 80vw;
-  height: 23vh;
+  width: 78vw;
   margin: auto auto;
   margin-bottom: 5%;
   background-color: #6596f3;
   border-radius: 15px;
+  padding: 20px;
 }
 
 .categorie__title {
-  padding: 10px;
   color: white;
 }
 
@@ -72,25 +70,21 @@ body {
 
 .categorie__list li {
   display: inline;
-  margin-left: 160px;
+  margin-left: 190px;
 }
 
-
- .lastPost {
+.lastPost {
   background-color: #6596f3;
   border-radius: 15px;
- }
- .lastPost__title {
-   padding: 10px;
-   color: white;
- }
-
+}
+.lastPost__title {
+  padding: 10px;
+  color: white;
+}
 
 .lastPost__box {
- display: flex;
- justify-content: space-between;
- 
-  
+  display: flex;
+  justify-content: space-between;
 }
 footer p {
   text-align: center;
@@ -124,6 +118,3 @@ img {
   font-size: 20px;
   color: black;
 }
-
-
-
