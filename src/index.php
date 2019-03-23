@@ -63,7 +63,7 @@ $stmt1->execute();
             while($row = $stmt->fetch(\PDO::FETCH_ASSOC)):     
             ?>
 
-            <li><a href="/page/singleCategorie.php?=<?= $row['id']?>"><?=$row['name']?></a></li>
+            <li><a href="/page/singleCategorie.php?id=<?= $row['id']?>"><?=$row['name']?></a></li>
 
             <?php 
             endwhile;
@@ -77,7 +77,7 @@ $stmt1->execute();
              while($row1 = $stmt1->fetch(\PDO::FETCH_ASSOC)):
              ?>
 
-             <li><a href="/page/singleCategorie.php?=<?= $row1['id']?>"><?=$row1['name']?></a></li>
+             <li><a href="/page/singleCategorie.php?id=<?= $row1['id']?>"><?=$row1['name']?></a></li>
 
             <?php
             endwhile;

@@ -1,28 +1,60 @@
 <?php
 require_once '../php/connect.php';
 
-$query = "SELECT
-          name 
-          FROM
-          Category
-          ;";
-
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-
 
 if (!$id = intval($_GET["id"])) {
     echo '400';
     exit;
 }
 
-$query1 = "SELECT
-            name
-           FROM
-           category;";
+$query = "SELECT
+              `id`,
+              `name` 
+          FROM
+              `category`
+          ;";
 
-$query2 = "SELECT
-            "
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+
+
+
+$titleCat = "SELECT
+                `name`
+            FROM
+              `category`
+            WHERE 
+              `id` = :id
+             ;";
+
+$stmt1 = $pdo->prepare($titleCat);
+$stmt1->bindValue(":id",$id);
+$stmt1->execute();
+$row1 = $stmt1->fetch(\PDO::FETCH_ASSOC);
+
+$subj = "SELECT
+            `title`,
+            `content`,
+            `img`,
+            `date_publication`
+         FROM
+            `subj`
+         WHERE category_id = :category_id;";
+$stmt2 = $pdo->prepare($subj);
+$stmt2->bindValue(":category_id",$id);
+$stmt2->execute();
+
+$com = "SELECT
+            content,
+            date_comment
+        FROM
+            comment
+        WHERE subj_id = :subj_id;";
+
+$stmt3 = $pdo->prepare($com);
+$stmt3->bindValue(":subj_id",$id);
+$stmt3->execute();
+
 
 
 ?>
@@ -40,78 +72,72 @@ $query2 = "SELECT
   <body>
 
     <header>
+
       <h3>catégorie</h3>
-        <ul>
+        <ul
             <?php
-            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) :
+                while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) :
             ?>
-          <li><a href="singleCategorie.php"><?=$row['name']?></a></li>
+
+            <li><a href="singleCategorie.php?id=<?= $row['id']?>"><?=$row['name']?></a></li>
 
             <?php
-            endwhile;
+                endwhile;
             ?>
         </ul>
         <div><a href="../index.php">Home</a></div>
       
-      <h1>TITLE OF THE CATEGORIE</h1>
+      <h1><?= $row1['name']?></h1>
     </header>
 
     <hr />
-    <div class= "start">
-      Start a new thread
-    </div>
+    <div class= "start"> Start a new thread</div>
     <hr />
 
     <main>
+
       <article class = "subject">
+
+          <?php
+            while ($rowsubj = $stmt2->fetch(\PDO::FETCH_ASSOC)) :
+          ?>
             <div class= subject__img>
-                <img src="../img/judo.jpeg" alt="Judo" />
+                <img src='../img/<?= $rowsubj["img"]?>' alt="Judo" />
                 <div class = subject__content>
-                    <div class= "subject__title">titlePost</div>
-                    <div class = "subject__author">authorPost/date</div>
+                    <div class= "subject__title"><?=$rowsubj["title"]?></div>
+                    <div class = "subject__author"><?=$rowsubj["date_publication"]?></div>
                     <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit unde
-                      rerum quidem voluptates asperiores officia impedit id beatae expedita
-                      labore ut neque reiciendis ducimus pariatur eveniet, eius aut
-                      voluptatem perspiciatis?
+                        <?=$rowsubj["content"]?>
                     </p>
                 </div>
             </div>
-            
             <a href="./singleArticle.html">Reply</a>
-        
-        
-        <hr>
-        <div class = "comment">Comment</div>
-        <hr>
+
+
+            <?php
+            endwhile;
+            ?>
+          <hr>
+
+          <div class = "comment">Comment</div>
+          <hr>
+          <?php
+          while ($coms = $stmt3->fetch(\PDO::FETCH_ASSOC)) :
+          ?>
+
+
         <div class = "comment__box">
           <div class = "comment__author">Comment Author</div>
-          <div class = "comment__date">23-05-1990</div>
+          <div class = "comment__date"><?=$coms["date_comment"]?></div>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Exercitationem, quia esse! Perferendis eos reiciendis quibusdam
-            ratione, quaerat ipsam recusandae unde libero sequi nulla
-            perspiciatis, hic fuga earum corrupti deleniti. Et?
+            <?=$coms["content"]?>
           </p>
         </div>
-        <div class = "comment__box">
-            <div class = "comment__author">Comment Author</div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem, quia esse! Perferendis eos reiciendis quibusdam
-              ratione, quaerat ipsam recusandae unde libero sequi nulla
-              perspiciatis, hic fuga earum corrupti deleniti. Et?
-            </p>
-          </div>
-          <div class = "comment__box">
-              <div class = "comment__author">Comment Author</div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem, quia esse! Perferendis eos reiciendis quibusdam
-                ratione, quaerat ipsam recusandae unde libero sequi nulla
-                perspiciatis, hic fuga earum corrupti deleniti. Et?
-              </p>
-            </div>
+          <?php
+          endwhile;
+          ?>
+
+
       </article>
 
     </main>
