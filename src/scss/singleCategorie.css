@@ -53,6 +53,8 @@ p {
 
 img {
   margin-bottom: 20px;
+  width: 20vw;
+  height: 20vw;
 }
 
 
@@ -62,13 +64,14 @@ img {
 }
 .comment__date {
   margin-left: 19px;
+  margin-bottom: 10px;
 }
 .comment__box {
   padding: 30px;
 }
 .comment__author {
   margin-left: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 .subject__title , .subject__author{
   margin-left: 20px;

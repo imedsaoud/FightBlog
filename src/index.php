@@ -2,29 +2,37 @@
 
 require_once 'php/connect.php' ;
 
-$query = "SELECT
+$queryCategoryList = "SELECT
               id,
               name
          FROM
               category
               LIMIT 5
           ;";
+$stmt = $pdo->prepare($queryCategoryList);
+$stmt->execute();
 
-$query1 = "SELECT
+
+$query1CategoryList = "SELECT
               id,
               name
           FROM
               category
               LIMIT 5 , 10 
           ;";
-
-
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-
-$stmt1 = $pdo->prepare($query1);
+$stmt1 = $pdo->prepare($query1CategoryList);
 $stmt1->execute();
 
+
+$subj = "SELECT
+            `title`,
+            `content`,
+            `img`
+         FROM
+            `subj`
+         LIMIT 4;";
+$stmt2 = $pdo->prepare($subj);
+$stmt2->execute();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -60,13 +68,13 @@ $stmt1->execute();
           <ul class="categorie__list">
 
             <?php
-            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)):     
+                while($row = $stmt->fetch(\PDO::FETCH_ASSOC)):
             ?>
 
             <li><a href="/page/singleCategorie.php?id=<?= $row['id']?>"><?=$row['name']?></a></li>
 
             <?php 
-            endwhile;
+                endwhile;
             ?>
 
           </ul>
@@ -74,54 +82,41 @@ $stmt1->execute();
           <ul class="categorie__list">
 
             <?php
-             while($row1 = $stmt1->fetch(\PDO::FETCH_ASSOC)):
+                while($row1 = $stmt1->fetch(\PDO::FETCH_ASSOC)):
              ?>
 
              <li><a href="/page/singleCategorie.php?id=<?= $row1['id']?>"><?=$row1['name']?></a></li>
 
             <?php
-            endwhile;
+                endwhile;
             ?>
 
           </ul>
         </div>
       </section>
 
+
+
       <section class="lastPost">
         <h2 class="lastPost__title">Last Post</h2>
         <div class="lastPost__box">
-          <article class="movie">
-            <h2>Judo</h2>
-            <img class="judo" src="img/judo.jpeg" />
+
+            <?php
+              while($row2 = $stmt2->fetch(\PDO::FETCH_ASSOC)):
+            ?>
+          <article class="subj">
+
+            <h2><?=$row2["title"]?></h2>
+            <img class="judo" src="img/<?=$row2["img"]?>" />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga id
-              inventore a ducimus totam!
+                <?=$row2["content"]?>
             </p>
+
           </article>
-          <article class="movie">
-            <h2>Judo</h2>
-            <img class="judo" src="img/judo.jpeg" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga id
-              inventore a ducimus totam!
-            </p>
-          </article>
-          <article class="movie">
-            <h2>Judo</h2>
-            <img class="judo" src="img/judo.jpeg" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga id
-              inventore a ducimus totam!
-            </p>
-          </article>
-          <article class="movie">
-            <h2>Judo</h2>
-            <img class="judo" src="img/judo.jpeg" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-              idinventore a ducimus totam!
-            </p>
-          </article>
+            <?php
+              endwhile;
+            ?>
+
         </div>
       </section>
     </main>
