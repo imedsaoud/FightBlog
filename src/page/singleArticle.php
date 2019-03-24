@@ -1,3 +1,20 @@
+<?php
+require_once '../php/connect.php';
+
+
+$query = "SELECT
+              `id`,
+              `name` 
+          FROM
+              `category`
+          ;";
+
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -12,17 +29,16 @@
 
     <header>
       <h3>catégorie</h3>
-        <ul class =>
-          <li>Judo</li>
-          <li>Boxe Anglaise</li>
-          <li>Mma</li>
-          <li>Taekwondo</li>
-          <li>Boxe Thai / Muay Thai</li>
-          <li>Karaté</li>
-          <li>Aïkido</li>
-          <li>Lutte</li>
-          <li>Kung-fu</li>
-          <li>Jujitsu</li>
+        <ul>
+            <?php
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) :
+                ?>
+
+                <li><a href="./singleCategorie.php?id=<?= $row['id']?>"><?=$row['name']?></a></li>
+
+            <?php
+            endwhile;
+            ?>
         </ul>
         
       

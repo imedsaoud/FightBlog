@@ -4,7 +4,7 @@
 
 h2 {
   margin-bottom: 40px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 body {
@@ -100,7 +100,7 @@ img {
   width: 80vw;
   margin: auto auto;
 }
-.movie {
+.subj {
   background-color: #6596f3;
   width: 230px;
   padding: 25px;

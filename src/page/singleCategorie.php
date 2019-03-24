@@ -46,13 +46,16 @@ $stmt2->execute();
 
 $com = "SELECT
             content,
-            date_comment
+            date_comment,
+            auteur_id
         FROM
             comment
-        WHERE subj_id = :subj_id;";
+        WHERE subj_id = :subj_id
+        ;";
 
 $stmt3 = $pdo->prepare($com);
 $stmt3->bindValue(":subj_id",$id);
+$stmt3->closeCursor();
 $stmt3->execute();
 
 
@@ -111,7 +114,7 @@ $stmt3->execute();
                     </p>
                 </div>
             </div>
-            <a href="./singleArticle.html">Reply</a>
+            <a href="singleArticle.php">Reply</a>
 
 
             <?php
@@ -127,8 +130,8 @@ $stmt3->execute();
 
 
         <div class = "comment__box">
-          <div class = "comment__author">Comment Author</div>
-          <div class = "comment__date"><?=$coms["date_comment"]?></div>
+          <div class = "comment__author">ID: <?= $coms["auteur_id"]?></div>
+          <div class = "comment__date"> Date: <?= $coms["date_comment"]?></div>
           <p>
             <?=$coms["content"]?>
           </p>

@@ -67,4 +67,6 @@ INSERT INTO category (name) VALUES ('Judo'),('Boxe Anglaise'),('Mma'),('Karaté'
 
 INSERT INTO user (pseudo) VALUES ('imedsa');
 
-INSERT INTO subj (title,content,img,auteur_id,date_publication,category_id) VALUES ('Championnat du monde de judo 2018','Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit unde rerum quidem voluptates asperiores officia impedit id beatae expedita labore ut neque reiciendis ducimus pariatur eveniet, eius aut voluptatem perspiciatis?' , 'judo.jpeg', 1 , '2018/03/23' , 1);
+INSERT INTO subj (title,content,img,auteur_id,date_publication,category_id) VALUES ("L'état de santé du boxeur Adonis Stevenson",'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit unde rerum quidem voluptates asperiores officia impedit id beatae expedita labore ut neque reiciendis ducimus pariatur eveniet, eius aut voluptatem perspiciatis?' , 'boxe.jpg', 2 , '2019/01/23' , 2);
+
+INSERT INTO comment (subj_id,auteur_id,content,date_comment) VALUES ( 4 , 1 , 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit unde rerum quidem voluptates asperiores officia impedit id beatae expedita labore ut neque reiciendis ducimus pariatur eveniet, eius aut voluptatem perspiciatis?', '2019/01/22''12:05:23');
