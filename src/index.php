@@ -3,17 +3,14 @@
 require_once 'php/connect.php' ;
 
 $queryCategoryList1 = "SELECT
-              id,
-              name
+              `id`,
+              `name`
          FROM
-              category
-              LIMIT 0 , 10
+              `category`
+               LIMIT 0 , 10
           ;";
 $stmt1 = $pdo->prepare($queryCategoryList1);
 $stmt1->execute();
-
-
-
 
 
 $subj = "SELECT
@@ -24,9 +21,9 @@ $subj = "SELECT
             `date_publication`
          FROM
             `subj`
-         ORDER BY date_publication LIMIT 4;";
-$stmt3 = $pdo->prepare($subj);
-$stmt3->execute();
+         ORDER BY `date_publication` LIMIT 4;";
+$stmt2 = $pdo->prepare($subj);
+$stmt2->execute();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -83,7 +80,7 @@ $stmt3->execute();
         <div class="lastPost__box">
 
             <?php
-              while($row2 = $stmt3->fetch(\PDO::FETCH_ASSOC)):
+              while($row2 = $stmt2->fetch(\PDO::FETCH_ASSOC)):
             ?>
           <article class="subj">
 
