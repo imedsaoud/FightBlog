@@ -1,17 +1,49 @@
 <?php
 require_once '../php/connect.php';
 
-
-$query = "SELECT
-              `id`,
-              `name` 
-          FROM
-              `category`
-          ;";
-
-$stmt = $pdo->prepare($query);
+if (!$id = intval($_GET["id"])) {
+    echo '400';
+    exit;
+}
+$queryCategoryList = "SELECT
+                        `id`,
+                        `name` 
+                      FROM
+                        `category`
+                      ;";
+$stmt = $pdo->prepare($queryCategoryList);
 $stmt->execute();
 
+
+$subj = "SELECT
+            `title`,
+            `content`,
+            `img`,
+            `date_publication`,
+            `category_id`
+         FROM
+            `subj`
+         WHERE 
+            `id` = :id
+         ;";
+$stmt1 = $pdo->prepare($subj);
+$stmt1->bindValue(":id",$id);
+$stmt1->execute();
+
+$com = "SELECT
+            `content`,
+            `date_comment`,
+            `auteur_id`
+        FROM
+            `comment`
+        WHERE 
+            `subj_id` = :subj_id
+        ;";
+
+$stmt3 = $pdo->prepare($com);
+$stmt3->bindValue(":subj_id",$id);
+$stmt3->closeCursor();
+$stmt3->execute();
 ?>
 
 
@@ -28,7 +60,7 @@ $stmt->execute();
   <body>
 
     <header>
-      <h3>catégorie</h3>
+        <h3>catégorie</h3>
         <ul>
             <?php
             while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) :
@@ -40,73 +72,58 @@ $stmt->execute();
             endwhile;
             ?>
         </ul>
-        
-      
-      <h1>TITLE OF THE CATEGORIE</h1>
-      <div><a href="singleCategorie.php">return</a></div>
+
     </header>
 
     <hr />
-    <div class= "start">
-      Post a reply
-    </div>
+    <div class= "start">Post a reply</div>
     <hr />
 
     <main>
-      <article class = "subject">
-       
-           
-            <div class= subject__img>
-                <img src="../img/judo.jpeg" alt="Judo" />
-                <div class = subject__content>
-                    <div class= "subject__title">titlePost</div>
-            
-                    <div class = "subject__author">authorPost/date</div>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit unde
-                      rerum quidem voluptates asperiores officia impedit id beatae expedita
-                      labore ut neque reiciendis ducimus pariatur eveniet, eius aut
-                      voluptatem perspiciatis?
-                    </p>
+        <article class = "subject">
+
+            <?php
+            while ($row1 = $stmt1->fetch(\PDO::FETCH_ASSOC)) :
+                ?>
+                <div class= subject__img>
+                    <img src='../img/<?= $row1["img"]?>' alt="Judo" />
+                    <div class = subject__content>
+                        <div class= "subject__title"><?=$row1["title"]?></div>
+                        <div class = "subject__author"><?=$row1["date_publication"]?></div>
+                        <p>
+                            <?=$row1["content"]?>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            
-           
-        
-        
-        <hr>
-        <div class = "comment">Comment</div>
-        <hr>
-        <div class = "comment__box">
-          <div class = "comment__author">Comment Author</div>
-          <div class = "comment__date">23-05-1990</div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Exercitationem, quia esse! Perferendis eos reiciendis quibusdam
-            ratione, quaerat ipsam recusandae unde libero sequi nulla
-            perspiciatis, hic fuga earum corrupti deleniti. Et?
-          </p>
-        </div>
-        <div class = "comment__box">
-            <div class = "comment__author">Comment Author</div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem, quia esse! Perferendis eos reiciendis quibusdam
-              ratione, quaerat ipsam recusandae unde libero sequi nulla
-              perspiciatis, hic fuga earum corrupti deleniti. Et?
-            </p>
-          </div>
-          <div class = "comment__box">
-              <div class = "comment__author">Comment Author</div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem, quia esse! Perferendis eos reiciendis quibusdam
-                ratione, quaerat ipsam recusandae unde libero sequi nulla
-                perspiciatis, hic fuga earum corrupti deleniti. Et?
-              </p>
-            </div>
-      </article>
-      <div><a href="singleCategorie.php">return</a></div>
+                <div><a href="singleCategorie.php?id=<?=$row1["category_id"] ?>">return</a></div>
+                <hr>
+                <div class = "comment">Comment</div>
+                <hr>
+                <?php
+                while ($coms = $stmt3->fetch(\PDO::FETCH_ASSOC)) :
+                    ?>
+
+
+                    <div class = "comment__box">
+                        <div class = "comment__author">ID: <?= $coms["auteur_id"]?></div>
+                        <div class = "comment__date"> Date: <?= $coms["date_comment"]?></div>
+                        <p>
+                            <?=$coms["content"]?>
+                        </p>
+                    </div>
+                <?php
+                endwhile;
+                ?>
+
+            <?php
+            endwhile;
+            ?>
+
+
+
+
+        </article>
+
     </main>
   </body>
 </html>

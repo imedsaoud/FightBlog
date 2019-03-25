@@ -10,6 +10,7 @@ li {
 ul {
   margin-left: auto;
   width: 95vw;
+  margin-bottom: 52px;
 }
 
 .start {
@@ -26,8 +27,11 @@ h1 {
 h3 {
   color: red;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-weight: bold;
+}
+hr{
+  height: 1px;
 }
 a {
   margin-left: 15px;
@@ -37,7 +41,7 @@ p {
   font-size: 17px;
 }
 .subject {
-  margin-top: 90px;
+  margin-top: 45px;
 }
 
 .comment__date {
@@ -52,6 +56,8 @@ p {
 
 img {
   margin-bottom: 20px;
+  width: 20vw;
+  height: 20vw;
 }
 
 .subject__content {
