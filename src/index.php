@@ -2,37 +2,31 @@
 
 require_once 'php/connect.php' ;
 
-$queryCategoryList = "SELECT
+$queryCategoryList1 = "SELECT
               id,
               name
          FROM
               category
-              LIMIT 5
+              LIMIT 0 , 10
           ;";
-$stmt = $pdo->prepare($queryCategoryList);
-$stmt->execute();
-
-
-$query1CategoryList = "SELECT
-              id,
-              name
-          FROM
-              category
-              LIMIT 5 , 10 
-          ;";
-$stmt1 = $pdo->prepare($query1CategoryList);
+$stmt1 = $pdo->prepare($queryCategoryList1);
 $stmt1->execute();
 
 
+
+
+
 $subj = "SELECT
+            `id`,
             `title`,
             `content`,
-            `img`
+            `img`,
+            `date_publication`
          FROM
             `subj`
-         LIMIT 4;";
-$stmt2 = $pdo->prepare($subj);
-$stmt2->execute();
+         ORDER BY date_publication LIMIT 4;";
+$stmt3 = $pdo->prepare($subj);
+$stmt3->execute();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -56,7 +50,7 @@ $stmt2->execute();
           FightBlog is a simple image-based bulletin board where anyone can post
           comments and share images about sport combat. There are boards
           dedicated to a variety of sport, from Judo and boxe to kung-fu, Muay
-          thai, . Users do not need to register an account before participating
+          thai.Users do not need to register an account before participating
           in the community. Feel free to click on a board below that interests
           you and jump right in!
         </p>
@@ -68,7 +62,7 @@ $stmt2->execute();
           <ul class="categorie__list">
 
             <?php
-                while($row = $stmt->fetch(\PDO::FETCH_ASSOC)):
+                while($row = $stmt1->fetch(\PDO::FETCH_ASSOC)):
             ?>
 
             <li><a href="/page/singleCategorie.php?id=<?= $row['id']?>"><?=$row['name']?></a></li>
@@ -79,19 +73,6 @@ $stmt2->execute();
 
           </ul>
 
-          <ul class="categorie__list">
-
-            <?php
-                while($row1 = $stmt1->fetch(\PDO::FETCH_ASSOC)):
-             ?>
-
-             <li><a href="/page/singleCategorie.php?id=<?= $row1['id']?>"><?=$row1['name']?></a></li>
-
-            <?php
-                endwhile;
-            ?>
-
-          </ul>
         </div>
       </section>
 
@@ -102,12 +83,14 @@ $stmt2->execute();
         <div class="lastPost__box">
 
             <?php
-              while($row2 = $stmt2->fetch(\PDO::FETCH_ASSOC)):
+              while($row2 = $stmt3->fetch(\PDO::FETCH_ASSOC)):
             ?>
           <article class="subj">
 
             <h2><?=$row2["title"]?></h2>
+            <a href="page/singleArticle.php?id=<?=$row2["id"]?>">
             <img class="judo" src="img/<?=$row2["img"]?>" />
+            </a>
             <p>
                 <?=$row2["content"]?>
             </p>
