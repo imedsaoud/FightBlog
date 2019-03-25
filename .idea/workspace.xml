@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b3cd102-ea00-4db6-938b-de2b472f9ca7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fightBlog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/fightBlog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/singleArticle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/singleArticle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/singleCategorie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/singleCategorie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/singleArticle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/singleArticle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/singleCategorie.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/singleCategorie.css" afterDir="false" />
-    </list>
+    <list default="true" id="3b3cd102-ea00-4db6-938b-de2b472f9ca7" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +26,7 @@
     <session id="723564527">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -75,16 +67,16 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/singleCategorie.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="608">
+              <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/php/add.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -137,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/page/singleArticle.php" />
         <option value="$PROJECT_DIR$/src/scss/singleCategorie.css" />
         <option value="$PROJECT_DIR$/src/js/main.js" />
-        <option value="$PROJECT_DIR$/src/page/singleCategorie.php" />
         <option value="$PROJECT_DIR$/src/php/add.php" />
+        <option value="$PROJECT_DIR$/src/page/singleCategorie.php" />
       </list>
     </option>
   </component>
@@ -239,16 +231,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553092255358</updated>
-      <workItem from="1553092256610" duration="29329000" />
+      <workItem from="1553092256610" duration="29555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29329000" />
+    <option name="totallyTimeSpent" value="29555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
@@ -338,17 +329,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/singleCategorie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/php/add.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/singleCategorie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
         </state>
       </provider>
     </entry>
