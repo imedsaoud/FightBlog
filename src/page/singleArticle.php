@@ -76,7 +76,20 @@ $stmt3->execute();
     </header>
 
     <hr />
-    <div class= "start">Post a reply</div>
+
+    <div class = "formular">
+        <div class= "reply">Post a reply</div>
+        <form action="../php/add.php" method="post" enctype="multipart/form-data" class="comSend">
+            <div class="formSend__pseudo">
+                <label for="pseudo">Entrer votre pseudo: </label>
+                <input type="text" name="pseudo" id="pseudo" required>
+            </div>
+            <textarea name="textarea" rows="10" cols="50">Vous pouvez écrire un commentaire ici.</textarea>
+            <div class="formSend__submit">
+                <input type="submit">
+            </div>
+        </form>
+    </div>
     <hr />
 
     <main>
@@ -125,5 +138,6 @@ $stmt3->execute();
         </article>
 
     </main>
+    <script src="../js/main.js"></script>
   </body>
 </html>

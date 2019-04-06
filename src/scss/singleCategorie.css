@@ -80,7 +80,7 @@ img {
   font-size: 17px;
 
 }
-.formSend{
+.formSend ,.comSend{
   display: none;
 }
 

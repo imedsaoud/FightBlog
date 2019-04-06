@@ -84,3 +84,18 @@ img {
   margin-bottom: 30px;
   font-size: 25px;
 }
+
+.formular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comSend{
+  display: none;
+}
+
+.formOpen {
+  display: block;
+}
+

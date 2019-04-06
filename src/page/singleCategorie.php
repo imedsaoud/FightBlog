@@ -2,7 +2,7 @@
 require_once '../php/connect.php';
 
 
-if (!$id = intval($_GET["id"])) {
+if ( !$id = intval($_GET["id"])) {
     echo '400';
     exit;
 }
@@ -16,7 +16,6 @@ $query = "SELECT
 
 $stmt = $pdo->prepare($query);
 $stmt->execute();
-
 
 
 $titleCat = "SELECT
@@ -46,6 +45,12 @@ $stmt2->bindValue(":category_id",$id);
 $stmt2->execute();
 
 
+$stmt4 = $pdo->prepare($subj);
+$stmt4->bindValue(":category_id",$id);
+$stmt4->execute();
+$row4 = $stmt4->fetch(\PDO::FETCH_ASSOC);
+$hh = $row4["id"];
+
 $com = "SELECT
             content,
             date_comment,
@@ -55,18 +60,52 @@ $com = "SELECT
         WHERE subj_id = :id
         ;";
 
-$stmt4 = $pdo->prepare($subj);
-$stmt4->bindValue(":category_id",$id);
-$stmt4->execute();
-$row4 = $stmt4->fetch(\PDO::FETCH_ASSOC);
-$hh = $row4["id"];
-
 $stmt3 = $pdo->prepare($com);
 $stmt3->bindValue(":id",$hh);
 $stmt3->execute();
+/*
+if(count($_POST) > 0){
+    $addSubj = "INSERT INTO subj
+                 (`title`,
+                  `content`,
+                  `img`,
+                  `date_publication`,
+                  `category_id`,
+                  `auteur_id`)
+            VALUES
+               (:title,
+                :content,
+                :img,
+                 Now(),
+                :category_id,
+                :auteur_id);";
+
+    $stmt5 = $pdo->prepare($addSubj);
+    $stmt5->bindValue(":title",$_POST["title"]);
+    $stmt5->bindValue(":content",$_POST["content"]);
+    $stmt5->bindValue(":img",$_POST["img"]);
+    $stmt5->bindValue(":category_id",$_GET["id"]);
+    $stmt5->bindValue(":auteur_id", 1);
+    $stmt5->execute();
+}
 
 
-
+$addcom = "INSERT INTO comment
+                 (`auteur_id`,
+                  `content`,
+                  `date_comment`,
+                  `subj_id`
+                  )
+            VALUES
+               (:auteur_id,
+                :content,
+                Now(),
+                :subj_id);";
+$stmt6 = $pdo->prepare($addcom);
+$stmt6->bindValue(":content",$_POST["content"]);
+$stmt6->bindValue(":subj_id",$hh);
+$stmt6->bindValue(":auteur_id",1);
+*/
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +143,7 @@ $stmt3->execute();
     <div class="formular">
         <div class= "start"> Start a new thread</div>
 
-        <form action="../php/add.php" method="post" enctype="multipart/form-data" class="formSend">
+        <form action="../page/singleCategorie.php" method="post" enctype="multipart/form-data" class="formSend">
             <div class="formSend__pseudo">
                 <label for="pseudo">Entrer votre pseudo: </label>
                 <input type="text" name="pseudo" id="pseudo" required>
@@ -118,7 +157,7 @@ $stmt3->execute();
                 <label for="title">Titre du post: </label>
                 <input type="text" name="title" id="title" required>
             </div>
-            <textarea name="textarea" rows="10" cols="50">Vous pouvez écrire ici.</textarea>
+            <textarea name="content" rows="10" cols="50">Vous pouvez écrire ici.</textarea>
             <div class="formSend__submit">
 
                 <input type="submit">
@@ -140,15 +179,17 @@ $stmt3->execute();
                 <div class = subject__content>
                     <div class= "subject__title"><?=$rowsubj["title"]?></div>
                     <div class = "subject__author"><?=$rowsubj["date_publication"]?></div>
-                    <p>
-                        <?=$rowsubj["content"]?>
-                    </p>
+                    <p><?=$rowsubj["content"]?></p>
                 </div>
             </div>
             <a href="singleArticle.php?id=<?=$rowsubj["id"]?>">Reply</a>
 
                 <hr>
-                <div class = "comment">Comment</div>
+
+                    <div class = "comment">Comment</div>
+
+
+
                 <hr>
                 <?php
                 while ($coms = $stmt3->fetch(\PDO::FETCH_ASSOC)) :
@@ -169,10 +210,6 @@ $stmt3->execute();
             <?php
             endwhile;
             ?>
-
-
-
-
       </article>
         <script src="../js/main.js"></script>
     </main>
