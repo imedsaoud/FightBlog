@@ -6,8 +6,8 @@
  * Time: 23:31
  */
 
-var_dump($_FILES);
-
+var_dump($urlImg);
+$urlImg = $_FILES[3];
 $maxsize =  8388608;
 
 $extension_valide = array('jpg','png','jpeg','gif');
@@ -24,4 +24,6 @@ if ( !in_array($extension_upload,$extension_valide) ) echo "Fichier non conforme
 $nom = "../img/{$_FILES['img']['name']}.{$extension_upload}";
 $resultat = move_uploaded_file($_FILES['img']['tmp_name'],$nom);
 if ($resultat) echo "Transfert réussi";
+
+
 
