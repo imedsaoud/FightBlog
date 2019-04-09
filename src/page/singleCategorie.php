@@ -63,49 +63,10 @@ $com = "SELECT
 $stmt3 = $pdo->prepare($com);
 $stmt3->bindValue(":id",$hh);
 $stmt3->execute();
-/*
-if(count($_POST) > 0){
-    $addSubj = "INSERT INTO subj
-                 (`title`,
-                  `content`,
-                  `img`,
-                  `date_publication`,
-                  `category_id`,
-                  `auteur_id`)
-            VALUES
-               (:title,
-                :content,
-                :img,
-                 Now(),
-                :category_id,
-                :auteur_id);";
-
-    $stmt5 = $pdo->prepare($addSubj);
-    $stmt5->bindValue(":title",$_POST["title"]);
-    $stmt5->bindValue(":content",$_POST["content"]);
-    $stmt5->bindValue(":img",$_POST["img"]);
-    $stmt5->bindValue(":category_id",$_GET["id"]);
-    $stmt5->bindValue(":auteur_id", 1);
-    $stmt5->execute();
-}
 
 
-$addcom = "INSERT INTO comment
-                 (`auteur_id`,
-                  `content`,
-                  `date_comment`,
-                  `subj_id`
-                  )
-            VALUES
-               (:auteur_id,
-                :content,
-                Now(),
-                :subj_id);";
-$stmt6 = $pdo->prepare($addcom);
-$stmt6->bindValue(":content",$_POST["content"]);
-$stmt6->bindValue(":subj_id",$hh);
-$stmt6->bindValue(":auteur_id",1);
-*/
+
+
 ?>
 
 <!DOCTYPE html>
@@ -126,9 +87,10 @@ $stmt6->bindValue(":auteur_id",1);
         <ul
             <?php
                 while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) :
+
             ?>
 
-            <li><a href="singleCategorie.php?id=<?= $row['id']?>"><?=$row['name']?></a></li>
+            <li><a href="singleCategorie.php?id=<?= $row["id"]?>"><?=$row['name']?></a></li>
 
             <?php
                 endwhile;
@@ -143,19 +105,14 @@ $stmt6->bindValue(":auteur_id",1);
     <div class="formular">
         <div class= "start"> Start a new thread</div>
 
-        <form action="../page/singleCategorie.php" method="post" enctype="multipart/form-data" class="formSend">
+        <form action="../php/add.php?"<?php $source_adress[1] ?> method="post" enctype="multipart/form-data" class="formSend">
             <div class="formSend__pseudo">
                 <label for="pseudo">Entrer votre pseudo: </label>
-                <input type="text" name="pseudo" id="pseudo" required>
-            </div>
-            <div class="formSend__img">
-                <label for="img">Image du post : </label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-                <input type="file" name="img" id="img" required>
+                <input type="text" name="pseudo" id="pseudo" >
             </div>
             <div class="formSend__title">
                 <label for="title">Titre du post: </label>
-                <input type="text" name="title" id="title" required>
+                <input type="text" name="title" id="title" >
             </div>
             <textarea name="content" rows="10" cols="50">Vous pouvez écrire ici.</textarea>
             <div class="formSend__submit">
@@ -211,7 +168,7 @@ $stmt6->bindValue(":auteur_id",1);
             endwhile;
             ?>
       </article>
-        <script src="../js/main.js"></script>
+        <script src="../js/subjForm.js"></script>
     </main>
   </body>
 </html>

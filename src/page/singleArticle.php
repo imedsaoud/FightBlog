@@ -138,6 +138,6 @@ $stmt3->execute();
         </article>
 
     </main>
-    <script src="../js/main.js"></script>
+    <script src="../js/comForm.js"></script>
   </body>
 </html>
