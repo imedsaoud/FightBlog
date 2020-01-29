@@ -97,33 +97,37 @@ $stmt3->execute();
             ?>
         </ul>
         <div><a href="../index.php">Home</a></div>
-      
+
       <h1><?= $row1['name']?></h1>
     </header>
 
     <hr />
     <div class="formular">
-        <div class= "start"> Start a new thread</div>
+        <div class= "start"> Start a new post</div>
 
-        <form action="../php/add.php?"<?php $source_adress[1] ?> method="post" enctype="multipart/form-data" class="formSend">
-            <div class="formSend__pseudo">
-                <label for="pseudo">Entrer votre pseudo: </label>
-                <input type="text" name="pseudo" id="pseudo" >
-            </div>
+        <form action="../php/add.php" method="post" enctype="multipart/form-data" class="formSend">
             <div class="formSend__title">
                 <label for="title">Titre du post: </label>
                 <input type="text" name="title" id="title" >
             </div>
+            <div>
+                <label for="postImg">Image associé au post</label>
+                <input type="file" name="postImg">
+            </div>
+            <div class="formSend__pseudo">
+                <label for="pseudo">Entrer votre pseudo: </label>
+                <input type="text" name="pseudo" id="pseudo" >
+            </div>
             <textarea name="content" rows="10" cols="50">Vous pouvez écrire ici.</textarea>
             <div class="formSend__submit">
-
                 <input type="submit">
             </div>
         </form>
     </div>
 
+
     <hr />
-    
+
     <main>
 
       <article class = "subject">
